@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('./partials/head') %>
+
+  <style>
+    html, body {
+           height: 100%;
+           margin: 0;
+           display: flex;
+           justify-content: center;  /* Center horizontally */
+           align-items: center;      /* Center vertically */
+       }
+       .alert-container {
+        margin-top: 120px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000; 
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+    }
+
+
+    .alert {
+      width: 80%;
+      max-width: 600px;
+    }
+
+    .create {
+  position: absolute;
+  border-radius: 50px;
+  bottom: 40px;
+  width: 350px;
+  text-align: center;
+  padding: 10px 5px;  /* Optional: Adjust the padding for spacing */
+  background-color: #d9dee3;  /* Optional: Add background color */
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for visual effect */
+}
+
+
+    .form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%; /* Ensure the form is centered vertically */
+    }
+
+    form {
+      width: 300px; 
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+ </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGNINPAGE</title>
+</head>
+<body>
+  <% if (locals.error) { %>
+    <div class="alert-container">
+      <div class="alert alert-danger" role="alert">
+        <%= error %>
+      </div>
+    </div>
+  <% } else { %>
+    <h3 class="alert-container" style="text-align: center;">Welcome Back</h3>
+    <% } %>
+   
+
+ 
+
+  
+    <div class="form-container">
+        <form action="/signin" method="post">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                 </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+
+
+    <div class="create">
+      <p>Don't have an account ? <a href="/signup"> Create Account</a></p>
+    </div>
+
+
+
+
+    <%- include('./partials/script') %>
+    
+</body>
+</html>

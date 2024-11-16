@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+             html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;    
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 30px;
+        }
+.home{
+    position: absolute;
+    left: 2px ;
+    top: 3px;
+    width: 20px;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+<body>
+<% if (locals.user && user) { %>
+  <a href="/" class="home">Home</a>
+  <img src="<%= locals.user.profileURL %> "  width="100px">
+   <p><b>Hello </b>  <%= user.fullName %> </p>
+    <p><b>Email : </b> <%= user.email %> </p>
+    <p><b>Your Blogs : </b> <a href="/blog/user" >Click here</a></p>
+    <p>Change Password : <a href="/u/changepassword" >Click here</a></p>
+<% } else { %>
+     <a href="/signin">Login </a>
+     to see your profile
+    <% }  %>
+
+   
+    
+</body>
+
+
+<%- include('./partials/script') %>
+</html>

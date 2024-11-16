@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <style>
+    html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center; 
+            align-items: center;    
+            font-size: 20px; 
+        }
+
+        .add{
+          position: absolute;
+          top: 100px;
+          text-align: center;
+          width: 400px;
+          font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        .home{
+    position: absolute;
+    left: 2px ;
+    top: 3px;
+    width: 20px;
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.title{
+  font-size: 25px;
+}
+
+ </style>
+
+
+    <%- include('./partials/head') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD BLOG</title>
+</head>
+<body>
+<div >
+    <a class="home" href="/">HOME</a>
+    <h1 class="mb-3 mt-0 add">Add Blog</h1>
+    <% if (locals.user) { %>
+      <form action="/blog/add" method="post" enctype="multipart/form-data">
+        <div class=" mb-3">
+           <label for="coverImage" class="mt-4 mb-3"> Cover Page </label>
+           <br>
+           <input name="coverImage" type="file">
+          </div>
+    
+    
+          <div class="input-group input-group-sm">
+            <span class="input-group-text" style="font-size: 20px;" id="inputGroup-sizing-lg">Title</span>
+            <br>
+            <input style="
+            margin-left: 5px;
+            width: 500px;
+            padding-left: 5px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, 'Times New Roman', Times, serif;
+            border-radius: 2px;
+           " name="title" type="text"  placeholder="Add your title here" class="form-text" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+          </div>
+    
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label mt-3">Decription</label>
+            <textarea name="des"  placeholder="Add your blog here" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+          <button style="
+          margin-left: 200px;
+         "type="submit" name="submit" class = "btn btn-primary">SUBMIT</button>
+       </form>
+    <% } else { %>
+     <a href="/signin">Login </a> to add blog
+      <% } %>
+
+ 
+</div>
+   
+
+
+<%- include('./partials/script') %>
+</body>
+</html>

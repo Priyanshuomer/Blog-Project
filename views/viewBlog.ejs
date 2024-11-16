@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+
+.user-profile{
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    margin-left: 30pxpx;
+}
+
+.title{
+    text-align: center;
+    font-size: 30px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.content{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    margin: 40px;
+}
+
+.cover{
+    margin-left: 300px;
+    margin-top: 50px;
+}
+   .indi-comment{
+    margin:5px 10px;
+    font-size: 23px;
+    margin-bottom: 20px;
+   }
+
+   .text-comment{
+    height:40px;
+    width: 1000px;
+    margin:5px 100px;
+    padding-left: 10px;
+
+   }
+   .btn{
+    background-color: rgb(24, 24, 240);
+    color: rgb(250, 255, 253);
+    margin-left: 0px;
+    font-size: 20px;
+    width: 90px;
+    border-radius: 3px;
+    height:35px;
+   }
+
+.comment{
+    margin-left: 20px;
+}
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Blog</title>
+</head>
+<body>
+
+    <a style="
+        font-size: 20px;
+        " href="/">Home</a>
+
+    <% if (locals.blog) { %>
+     <div>
+        <div class=" user-profile" style="
+            margin-left: 200px;
+            ">
+            <img style="
+                margin: 4px 7px;
+                
+                "  src="<%= blog.createdBy.profilePhotoUrl %>" width="40px">
+           <span style="font-size: 35px; margin-left: 5px;"> <%= blog.createdBy.fullName %> </span> 
+        </div>
+        <div class="title"><%= blog.title %></div>
+        <img class="cover" src="<%= blog.coverURL %>" width="800px"  height="500px">
+        <div class="content"><%= blog.content %></div>
+        
+     </div>
+    <% } %>
+
+
+
+       <% if (locals.comments) { %>
+        <h1>Comments(<%= comments.length %>)</h1>
+        <% comments.forEach(comment => { %>
+            <div class="indi-comment">
+                <div class=" user-profile">
+                    <img src="<%= comment.commentedBy.profilePhotoUrl %>" width="30px">
+                   <span style="font-size: 25px; margin-left: 5px;"> <%= comment.commentedBy.fullName %> </span> 
+                   <span class="comment"> <%= comment.comment %> </span>
+                </div>
+            </div>
+        <% }) %>
+      
+       <% } %>
+
+       <% if (locals.user) { %>
+        <form method="post" action="/blog/view/<%= blog._id %> %>">
+          <div>
+              <input class="text-comment" type="text" name="comment" placeholder="Add your comments">
+              <button type="submit" class="btn">Add</button>
+             </div>
+        </form>
+        <% } else { %>
+            <a href="/signin">Login </a>
+            to comment on blog
+           <% }  %>
+    
+</body>
+<%- include('./partials/script') %>
+</html>
