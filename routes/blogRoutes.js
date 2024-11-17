@@ -34,6 +34,17 @@ route.get("/view/:id" , async (req,res) => {
   })
 });
 
+route.get("/delete/:id",async (req,res) => {
+await blogModel.findByIdAndDelete(req.params.id);
+let comment = await commentModel.findOneAndDelete({commentedOn : req.params.id});
+while(comment)
+{
+  comment = await commentModel.findOneAndDelete({commentedOn : req.params.id , _id: { $gt: comment._id }});
+}
+
+ res.redirect("/blog/user");
+})
+
 
 route.post("/view/:id" , async (req,res) => {
     await commentModel.create({

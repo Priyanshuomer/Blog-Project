@@ -24,7 +24,7 @@
     justify-content: space-around;
 }
 .max{
-    flex:1 1 11 1;
+    flex:1 1 1 1;
 }
 
 .box{
@@ -33,6 +33,7 @@
     flex-direction: column;
     width: 300px;
     padding: 2px 2px;
+    height: fit-content;
 
 }
 
@@ -47,13 +48,23 @@ img {
     width: auto;
     align-content: center;
 }
-.button{
+.button , 
+.delete{
     background-color: rgb(98, 98, 215);
     color: rgb(255, 255, 254);
     text-align: center;
-    height: 40px;
+    height: 30px;
     font-size: 20px;
+    text-decoration: none;
+    padding: 1px 3px;
+    padding-top: 1px;
 }
+.delete{
+    background-color: rgb(255, 22, 22);
+    margin-top: 2px;
+    text-align: center;
+}
+
     </style>
 
     <meta charset="UTF-8">
@@ -73,6 +84,7 @@ img {
             <img src="<%= blog.coverURL %>" width="290px">
             <h3 class="title"><%= blog.title %></h3>
             <a class=" button" href="/blog/view/<%= blog._id %>">View</a>
+            <a class="delete" href="/blog/delete/<%= blog._id %>">Delete Blog</a>
         </div>
        <% }) %>
     </div>
