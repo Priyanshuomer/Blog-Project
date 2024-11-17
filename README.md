@@ -1,4 +1,4 @@
-<h1>Hello Everyone  <img src = "https://logos-world.net/wp-content/uploads/2023/11/Emoji-Wave-Hand.png" width="60px"> </h1>
+<h1>Hello Everyone  <img src = "https://logos-world.net/wp-content/uploads/2023/11/Emoji-Wave-Hand.png" width="100px"> </h1>
 <p>This project is generally based on Blogging Website </p>
 <p>In this web applicaion , the user can add , delete and update their blogs and can also be able to see other's blogs . This web application has also feature of comments . </p>
 
