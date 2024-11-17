@@ -2,7 +2,6 @@ const {getUserByToken} = require("../utils/token.js")
 
 function checkUserAuthentication(cookieValue){
     return (req,res,next) => {
-         console.log("AUTH");
         const token = req.cookies[cookieValue];
         
         if(!token)

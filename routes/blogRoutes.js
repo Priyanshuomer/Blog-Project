@@ -19,7 +19,6 @@ const storage = multer.diskStorage({
   const upload = multer({ storage : storage });
 
 
-//   route.post("/add-cover-image",)
 
 
 const route = express.Router();

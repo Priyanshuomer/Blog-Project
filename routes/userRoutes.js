@@ -8,32 +8,20 @@ const {generateTokenForUser} = require("../utils/token.js")
 
 const router = Router();
 
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//       return cb(null, path.resolve(__dirname,"../public/profiles/"));
-//     },
-//     filename: function (req, file, cb) {
-//       const name = file.originalname + '-' + Date.now();
-//       return cb(null,name);
-//     }
-//   });
+
 
 
   const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      // Save the image in the 'public/profiles/' folder
       cb(null, path.resolve(__dirname, "../public/profiles/"));
     },
     filename: function (req, file, cb) {
-      // Ensure a unique filename
       const name = Date.now() + '-' + file.originalname;
       cb(null, name); // Save the file with the unique filename
     }
   });
 
   const upload = multer({ storage: storage });
-  // Serve static files from the 'public' directory
-// app.use(express.static(path.join(__dirname, 'public')));
 
 
 
@@ -76,7 +64,6 @@ router.post("/u/changepassword",async (req,res) => {
    const currentPassword = req.body.current;
    const newPassword = req.body.new;
    const email = req.user.email;
-   console.log(newPassword , currentPassword , email);
 
 
 
@@ -115,9 +102,6 @@ router.post("/u/changepassword",async (req,res) => {
     );
 
    user.password = newHashedPassword;
-  //  const token =  generateTokenForUser(user);
-  //  res.clearCookie("uid");
-  //  res.cookie("uid",token);
 
   req.user = user;
 
@@ -155,7 +139,6 @@ router.post("/signin" , async (req,res) => {
     const {email,password} = req.body;
    try{
     const token = await userModel.matchPasswordAngGenerateToken(email,password);
-    console.log(token);
         return res.cookie("uid",token).redirect("/");
    }
    catch(error){
@@ -167,8 +150,6 @@ router.post("/signin" , async (req,res) => {
 
 router.post("/signup",upload.single("profilepic"), async (req,res) => {
 const {fullName,email,password,profilepic} = req.body;
-// console.log("req",req.file);
-// console.log("hello");
 if(!fullName || !email || !password)
     return res.render("signupPage",{
   error :"Please fill all required fields"});
